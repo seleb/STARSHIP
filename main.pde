@@ -1,14 +1,16 @@
 // game application
 
 Game game;
-void setup() {
-  size(1280, 720, P2D);
-  frameRate(60);
-
-  // render settings
-  noCursor();
+void settings(){
+  fullScreen(P2D);
   noSmooth();
+}
+void setup() {
+  //render setings
+  size(1280,720,P2D);
+  noCursor();
   textureMode(NORMAL);
+  frameRate(60);
   ((PGraphicsOpenGL)g).textureSampling(2);
 
   // load font

@@ -104,17 +104,19 @@ static class ReusablePShapes {
   // gets a grid PShape with the specified width, height, and cell size
   static PShape getGridShape(int _w, int _h, int _c) {
     PShape gridShape = context.createShape();
-    gridShape.beginShape(LINES);
+    gridShape.beginShape(LINE_STRIP);
     gridShape.noFill();
     gridShape.stroke(0);
 
     for (int x = 0; x < _w; x += _c) {
       gridShape.vertex(x, 0);
       gridShape.vertex(x, _h);
+      gridShape.vertex(x, 0);
     }
     for (int y = 0; y < _h; y += _c) {
       gridShape.vertex(0, y);
       gridShape.vertex(_w, y);
+      gridShape.vertex(0, y);
     }
     gridShape.endShape();
     gridShape.setStrokeWeight(2);
