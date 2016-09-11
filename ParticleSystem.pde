@@ -32,4 +32,3 @@ class ParticleSystem implements Updatable, Drawable {
     }
   }
 }
-

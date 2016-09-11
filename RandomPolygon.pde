@@ -52,4 +52,3 @@ public class RandomPolygon extends Box2DBase {
     polyShape.resetMatrix();
   }
 }
-

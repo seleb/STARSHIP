@@ -42,15 +42,8 @@ void draw() {
     textAlign(CENTER, CENTER);
     fill(255, 0, 108);
     text("STARSHIP", width/2, height/2);
-    if (game.connection.connected) {
-      fill(255, 255, 200);
-      text("connected to server", width/2, height/2+30);
-      text("click to play online", width/2, height/2+60);
-    } else {
-      fill(200, 200, 200);
-      text("no server found", width/2, height/2+30);
-      text("click to play locally", width/2, height/2+60);
-    }
+    fill(255, 255, 200);
+    text("click to play", width/2, height/2+60);
 
     // scale image to fill screen
     clip(0, 0, width, height);

@@ -1,12 +1,10 @@
-import oscP5.*;
-import netP5.*;
-
 // helper class for managing chunks. Interfaces with the Connection class.
 class ChunkManager implements Updatable, Drawable {
   Box2DProcessing mBox2D;
   ArrayList<Chunk> chunks;
 
   int currChunk = 2;
+  int 
 
   Connection connection;
 
@@ -43,16 +41,7 @@ class ChunkManager implements Updatable, Drawable {
       connection.nextChunkId = currChunk - 3;
       currChunk -= 1;
     }
-    if (connection.connected) {
-      // load next chunk of terrain and remove oldest chunk
-      OscMessage oscMessage = new OscMessage("/chunkRequest");
-      oscMessage.add(connection.nextChunkId); // int, current c size
-      connection.mOSC.send(oscMessage);
-      connection.waitingForChunk = true;
-    } else {
-      connection.nextChunkSeed = (int)random(0, 100000);
-      connection.chunkReceived = true;
-    }
+    connection.chunkReceived = true;
   }
 
   // removes an old chunk from one side of the world and adds a new one to the other side
@@ -60,7 +49,7 @@ class ChunkManager implements Updatable, Drawable {
     boolean srcIsStart = (connection.nextChunkId > currChunk);
 
     Vec2 groundSrc = srcIsStart ? chunks.get(chunks.size()-1).endPoint : chunks.get(0).startPoint;
-    Chunk t = new Chunk(groundSrc, srcIsStart, connection.nextChunkSeed, width, height*2, mBox2D);
+    Chunk t = new Chunk(groundSrc, srcIsStart, connection.nextChunkId, width, height*2, mBox2D);
 
     if (srcIsStart) {
       chunks.get(0).destroy();
@@ -88,4 +77,3 @@ class ChunkManager implements Updatable, Drawable {
     }
   }
 };
-

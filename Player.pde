@@ -199,4 +199,3 @@ public class Player extends Box2DBase implements Updatable {
     popMatrix();
   }
 }
-

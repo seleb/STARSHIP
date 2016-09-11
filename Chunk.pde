@@ -174,4 +174,3 @@ class Chunk extends Box2DBase implements Updatable {
     return p;
   }
 }
-

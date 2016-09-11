@@ -57,4 +57,3 @@ public class Particle extends Box2DBase implements Updatable {
     size  = prev;
   }
 }
-

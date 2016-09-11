@@ -95,4 +95,3 @@ class Pickup extends Box2DBase implements Updatable {
     }
   }
 }
-

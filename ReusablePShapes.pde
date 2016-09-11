@@ -121,4 +121,3 @@ static class ReusablePShapes {
     return gridShape;
   }
 }
-

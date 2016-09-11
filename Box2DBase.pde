@@ -133,4 +133,3 @@ class Box2DBase implements Drawable {
     mBody.setUserData(this);
   }
 }
-

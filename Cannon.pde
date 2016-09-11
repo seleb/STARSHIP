@@ -63,4 +63,3 @@ class Cannon extends Box2DBase implements Updatable {
     }
   }
 }
-

@@ -5,4 +5,3 @@ static class FilterCategory {
   final static int PARTICLE = 0x0004;
   final static int PICKUP = 0x0008;
 }
-
