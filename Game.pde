@@ -204,35 +204,31 @@ class Game implements Drawable, Updatable {
         // draw player position/score indicators
         textAlign(CENTER, CENTER);
         noFill();
-        if (connection.playerDataDisplay != null) {
-          for (int i = 0; i < connection.playerDataDisplay.length; i+=4) {
-            pushMatrix();
-            {
-              float xMouseOffset = (max(0, min(mouseX, width)) - width*0.5)/zoom*0.5;
-              float yMouseOffset = (max(0, min(mouseY, height)) - height*0.5)/zoom*0.5;
-              float x = max(player.pos.x-width/(2.2*zoom) + xMouseOffset, min(player.pos.x+width/(2.2*zoom) + xMouseOffset, connection.playerDataDisplay[i] + width/2));
-              float y = max(player.pos.y-height/(2.2*zoom) + yMouseOffset, min(player.pos.y+height/(2.2*zoom) + yMouseOffset, connection.playerDataDisplay[i+1] + height/2));
-              int score = ceil(connection.playerDataDisplay[i+2]);
-              translate(x, y);
-              scale(1/zoom);
+        for (int i = 0; i < connection.playerDataDisplay.length; i+=4) {
+          pushMatrix();
+          {
+            float xMouseOffset = (max(0, min(mouseX, width)) - width*0.5)/zoom*0.5;
+            float yMouseOffset = (max(0, min(mouseY, height)) - height*0.5)/zoom*0.5;
+            float x = max(player.pos.x-width/(2.2*zoom) + xMouseOffset, min(player.pos.x+width/(2.2*zoom) + xMouseOffset, connection.playerDataDisplay[i] + width/2));
+            float y = max(player.pos.y-height/(2.2*zoom) + yMouseOffset, min(player.pos.y+height/(2.2*zoom) + yMouseOffset, connection.playerDataDisplay[i+1] + height/2));
+            int score = round(connection.playerDataDisplay[i+2]);
+            translate(x, y);
+            scale(1/zoom);
 
-              strokeWeight(5);
-              stroke(255, 64, 108);
-              noFill();
-              ellipse(0, 0, 75, 75);
-              fill((int)connection.playerDataDisplay[i+3]);
-              text("P"+((int)i/4 + 1), 0, -20);
-              translate(0, 20);
-              int scoreMod = score % 100;
-              if (scoreMod == 0) {
-                scoreMod = 100;
-              }
-              scale(map(scoreMod, 1, 100, 2, 0.75));
-              fill(255, 255, map(scoreMod, 100, 1, 100, 0));
-              text(score, 0, 0);
+            strokeWeight(5);
+            stroke(255, 64, 108);
+            noFill();
+            ellipse(0, 0, 75, 75);
+            translate(0, 20);
+            int scoreMod = score % 100;
+            if (scoreMod == 0) {
+              scoreMod = 100;
             }
-            popMatrix();
+            scale(map(scoreMod, 1, 100, 2, 0.75));
+            fill(255, 255, map(scoreMod, 100, 1, 100, 0));
+            text(score, 0, -30);
           }
+          popMatrix();
         }
       }
 
@@ -258,7 +254,7 @@ class Game implements Drawable, Updatable {
       } else {
         fill(61, 153, 153);
       }
-      ellipse(mouseX, mouseY, 15, 15);
+      ellipse(mouseX, mouseY, 16, 16);
     }
     popMatrix();
 
@@ -319,4 +315,7 @@ void beginContact(Contact cp) {
       ((Player)o2).damage();
     }
   }
+}
+
+void endContact(Contact cp){
 }
