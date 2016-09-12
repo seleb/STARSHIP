@@ -4,7 +4,6 @@ class ChunkManager implements Updatable, Drawable {
   ArrayList<Chunk> chunks;
 
   int currChunk = 2;
-  int 
 
   Connection connection;
 
@@ -17,7 +16,7 @@ class ChunkManager implements Updatable, Drawable {
     // initialize the first five chunks with 1, 2, 3, 4, 5 (server does the same)
     Vec2 groundSrc = new Vec2(-mBox2D.scalarPixelsToWorld(width), 0);
     for (int i = 1; i <= 5; ++i) {
-      Chunk t = new Chunk(groundSrc, true, i, width, height*2, mBox2D);
+      Chunk t = new Chunk(groundSrc, true, i+connection.seed, width, height*2, mBox2D);
       groundSrc = t.endPoint;
       chunks.add(t);
     }
@@ -49,7 +48,7 @@ class ChunkManager implements Updatable, Drawable {
     boolean srcIsStart = (connection.nextChunkId > currChunk);
 
     Vec2 groundSrc = srcIsStart ? chunks.get(chunks.size()-1).endPoint : chunks.get(0).startPoint;
-    Chunk t = new Chunk(groundSrc, srcIsStart, connection.nextChunkId, width, height*2, mBox2D);
+    Chunk t = new Chunk(groundSrc, srcIsStart, connection.nextChunkId+connection.seed, width, height*2, mBox2D);
 
     if (srcIsStart) {
       chunks.get(0).destroy();

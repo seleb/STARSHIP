@@ -2,7 +2,6 @@
 class Connection implements Updatable {
   Player player;
 
-  boolean connected = false;
   boolean updatePlayers = false;
   boolean waitingForChunk = false;
   boolean chunkReceived = false;
@@ -13,12 +12,14 @@ class Connection implements Updatable {
 
   int nextChunkId;
   int nextChunkSeed;
+  int seed;
 
   Connection(Player _player, PApplet _context) {
     player = _player;
 
     playerDataNew = new float[4];
     playerDataDisplay = new float[4];
+    seed = floor(random(pow(2,16)));
   }
 
   void update() {
