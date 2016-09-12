@@ -76,6 +76,9 @@ public class Player extends Box2DBase implements Updatable {
       // score bonus
       score += _p.score;
       multiplier += 1;
+      
+      game.starGet.rewind();
+      game.starGet.play();
     }
   }
 

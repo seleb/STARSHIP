@@ -34,6 +34,8 @@ class Game implements Drawable, Updatable {
   Minim minim;
   AudioPlayer pop;
   AudioPlayer popLoud;
+  AudioPlayer hit;
+  AudioPlayer starGet;
   AudioPlayer bgMusic;
   int popThrottle = 5;
 
@@ -70,6 +72,8 @@ class Game implements Drawable, Updatable {
       bgMusic = minim.loadFile("custom thing.mp3");
       pop = minim.loadFile("pop-quiet.wav");
       popLoud = minim.loadFile("pop.wav");
+      hit = minim.loadFile("hit.wav");
+      starGet = minim.loadFile("starGet.wav");
       bgMusic.loop();
       fft = new FFT( bgMusic.bufferSize(), bgMusic.sampleRate() );
     }
@@ -304,6 +308,8 @@ void beginContact(Contact cp) {
 
     if ((f2.getFilterData().categoryBits & FilterCategory.BOUNDARY) != 0) {
       ((Player)o1).damage();
+      game.hit.rewind();
+      game.hit.play();
     }
   } else if (o2.getClass() == Player.class) {
     if (o1.getClass() == Pickup.class) { 
@@ -313,6 +319,8 @@ void beginContact(Contact cp) {
 
     if ((f1.getFilterData().categoryBits & FilterCategory.BOUNDARY) != 0) {
       ((Player)o2).damage();
+      game.hit.rewind();
+      game.hit.play();
     }
   }
 }
